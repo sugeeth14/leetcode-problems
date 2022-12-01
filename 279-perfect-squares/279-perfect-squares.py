@@ -19,7 +19,7 @@ class Solution:
                     second_operand = all_squares[i]
                     val = backtrack(first_operand) + backtrack(second_operand)
                     val_min = min(val, val_min)
-                    if val_min ==2:
+                    if val_min == 2:
                         break
             return val_min
         return backtrack(n)
