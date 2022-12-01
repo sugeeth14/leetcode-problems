@@ -13,7 +13,7 @@ class Solution:
             if rem in all_squares_set:
                 return 1
             val_min = 100
-            for i in range(len(all_squares)-1,0,-1):  
+            for i in range(1, len(all_squares)-1):  
                 if rem - all_squares[i] >= 0:
                     first_operand = rem-all_squares[i]
                     second_operand = all_squares[i]
@@ -21,6 +21,8 @@ class Solution:
                     val_min = min(val, val_min)
                     if val_min == 2:
                         break
+                else:
+                    break
             return val_min
         return backtrack(n)
                 
