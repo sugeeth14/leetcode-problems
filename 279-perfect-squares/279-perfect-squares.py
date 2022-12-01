@@ -1,29 +1,17 @@
 class Solution:
     def numSquares(self, n: int) -> int:
-        
-        all_squares = []
-        for i in range(101):
-            all_squares.append(i * i)
-        all_squares_set = set(all_squares)
-        
-        @lru_cache(maxsize=None)
-        def backtrack(rem):
-            if rem == 0:
-                return 1
-            if rem in all_squares_set:
-                return 1
-            val_min = 100
-            for i in range(1, len(all_squares)-1):  
-                if rem - all_squares[i] >= 0:
-                    first_operand = rem-all_squares[i]
-                    second_operand = all_squares[i]
-                    val = backtrack(first_operand) + backtrack(second_operand)
-                    val_min = min(val, val_min)
-                    if val_min == 2:
-                        break
-                else:
+        dp = [n] * (n + 1)
+        dp[0] = 0
+        squares = []
+        for i in range(math.ceil(math.sqrt(n)) + 1):
+            squares.append(i * i)
+        # print(squares)
+        for target in range(1, n + 1):
+            # For every value we should see what is the best for it
+            for square in squares:
+                if target < square:
                     break
-            return val_min
-        return backtrack(n)
-                
+                dp[target] = min(dp[target], 1 + dp[target - square])
+        return dp[n]
+            
         
