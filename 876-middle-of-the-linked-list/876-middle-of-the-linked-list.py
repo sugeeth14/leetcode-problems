@@ -12,9 +12,7 @@ class Solution:
         while head:
             stack.append(head)
             head = head.next
-        if len(stack) % 2 == 0:
-            return stack[len(stack)//2]
-        else:
-            return stack[len(stack)//2]
+
+        return stack[len(stack)//2]
         
         
