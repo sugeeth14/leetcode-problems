@@ -9,5 +9,7 @@ class Solution:
             additionalRocks -= difference_array[i]
             if additionalRocks >= 0:
                 count += 1
+            else:
+                break
         return count
         
