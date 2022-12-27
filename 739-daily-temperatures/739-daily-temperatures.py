@@ -1,6 +1,6 @@
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        from collections import deque
+        # from collections import deque
         stack = deque()
         
         res = [0] * len(temperatures)
