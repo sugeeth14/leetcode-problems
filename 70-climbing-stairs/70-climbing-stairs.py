@@ -6,8 +6,7 @@ class Solution:
         b = 2
         for i in range(3, n + 1):
             c = a + b
-            a = b
-            b = c
+            a, b = b, c
         return b
             
         
