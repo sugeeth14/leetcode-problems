@@ -8,12 +8,13 @@ class Node:
 
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
+        if not root:
+            return []
         res = []
         
         def traverse(node):
-            if node:
-                res.append(node.val)
-                for child in node.children:
-                    traverse(child)
+            res.append(node.val)
+            for child in node.children:
+                traverse(child)
         traverse(root)
         return res
