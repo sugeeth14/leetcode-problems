@@ -8,6 +8,5 @@ class Solution:
             else:
                 dic[sorted_st] = [st]
         # res = []
-        res = dic.values()
-        return res
+        return dic.values()
         
