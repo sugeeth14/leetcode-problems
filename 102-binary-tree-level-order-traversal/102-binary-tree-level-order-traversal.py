@@ -9,11 +9,10 @@ class Solution:
         if not root:
             return []
         
-        from collections import deque
-        
-        res = []
-        queue = deque()
+        queue = collections.deque()
         queue.append((root, 0))
+        res = []
+        
         while queue:
             top, level = queue.popleft()
             if level == len(res):
@@ -25,6 +24,4 @@ class Solution:
             if top.right:
                 queue.append((top.right, level + 1))
         return res
-        
-        
         
