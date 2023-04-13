@@ -18,6 +18,6 @@ class Solution:
                 r -= 1
             else:
                 # We have two string choices here either not considering the character at l or not considering the character at r
-                return checkPalindrome(s[:l] + s[l + 1:]) or checkPalindrome(s[:r] + s[r+1:])
+                return checkPalindrome(s[l+1:r + 1]) or checkPalindrome(s[l:r])
         return True
         
