@@ -18,6 +18,6 @@ class Solution:
                 middleNode.left = constructTree(l, mid - 1)
                 middleNode.right = constructTree(mid + 1, r)
                 return middleNode
-        tree = constructTree(0, len(nums) - 1)
-        return tree
+        return  constructTree(0, len(nums) - 1)
+        # return tree
         
