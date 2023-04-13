@@ -10,14 +10,11 @@ class Solution:
         def constructTree(l, r):
             if l > r:
                 return None
-            elif l == r:
-                return TreeNode(nums[l])
-            else:
-                mid = (l + r)//2
-                middleNode = TreeNode(nums[mid])
-                middleNode.left = constructTree(l, mid - 1)
-                middleNode.right = constructTree(mid + 1, r)
-                return middleNode
+            
+            mid = (l + r)//2
+            middleNode = TreeNode(nums[mid])
+            middleNode.left = constructTree(l, mid - 1)
+            middleNode.right = constructTree(mid + 1, r)
+            return middleNode
         return  constructTree(0, len(nums) - 1)
-        # return tree
         
