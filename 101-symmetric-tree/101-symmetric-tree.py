@@ -5,12 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSymmetric(self, root: TreeNode) -> bool:
-        def is_symmetric(node1, node2):
-            if node1 == None and node2 == None:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        
+        def isMirror(node1, node2):
+            if not node1 and not node2:
                 return True
-            if node1 == None or node2 == None:
+            elif not node1:
                 return False
-            if node1.val == node2.val:
-                return is_symmetric(node1.left, node2.right) and is_symmetric(node1.right, node2.left)
-        return is_symmetric(root.left, root.right)
+            elif not node2:
+                return False
+            elif node1.val == node2.val:
+                return isMirror(node1.left, node2.right) and isMirror(node1.right, node2.left)
+            else:
+                return False
+        return isMirror(root.left, root.right)
+        
