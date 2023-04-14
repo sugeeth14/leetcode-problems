@@ -10,14 +10,14 @@ class Solution:
                 l += 1
                 r -= 1
             return True
+        
+        
         l = 0
         r = len(s) - 1
         while l < r:
-            if s[l] == s[r]:
-                l += 1
-                r -= 1
-            else:
-                # We have two string choices here either not considering the character at l or not considering the character at r
-                return checkPalindrome(s[l+1:r + 1]) or checkPalindrome(s[l:r])
+            if s[l] != s[r]:
+                return checkPalindrome(s[l+1:r+1]) or checkPalindrome(s[l:r])
+            l += 1
+            r -= 1
         return True
         
