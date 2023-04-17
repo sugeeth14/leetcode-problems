@@ -8,20 +8,18 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
             return []
-        
+        res = {}
         queue = collections.deque()
         queue.append((root, 0))
-        res = []
-        
         while queue:
             top, level = queue.popleft()
-            if level == len(res):
-                res.append([top.val])
+            if level in res:
+                res[level].append(top.val)
             else:
-                res[-1].append(top.val)
+                res[level] = [top.val]
             if top.left:
                 queue.append((top.left, level + 1))
             if top.right:
                 queue.append((top.right, level + 1))
-        return res
+        return res.values()
         
