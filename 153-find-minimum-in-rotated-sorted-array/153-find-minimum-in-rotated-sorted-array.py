@@ -13,6 +13,6 @@ class Solution:
             else:
                 min_number = min(min_number, nums[mid])
                 l = mid + 1
-        min_number = min(nums[l], nums[r], min_number)
+        min_number = min(nums[l], min_number)
         return min_number
                 
