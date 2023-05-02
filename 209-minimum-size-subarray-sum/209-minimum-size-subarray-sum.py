@@ -9,7 +9,7 @@ class Solution:
         current_sum = 0
         res = float("infinity")
         
-        while ptr2 < len(nums):
+        while ptr1 <= ptr2 and ptr2 < len(nums):
             if current_sum >= target:
                 res = min(ptr2 - ptr1, res)
                 current_sum -= nums[ptr1]
