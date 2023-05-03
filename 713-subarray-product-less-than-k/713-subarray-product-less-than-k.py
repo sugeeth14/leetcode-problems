@@ -15,7 +15,6 @@ class Solution:
             
             if nums[r] < k:
                 ans += 1
-            # print(nums[r], ans, l, r)
         return ans
                 
             
