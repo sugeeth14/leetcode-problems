@@ -8,10 +8,10 @@ class Solution:
         mod = 1000000007
         
         while l <=r:
-            while l <=r and (nums[l] + nums[r] > target):
+            if (nums[l] + nums[r] > target):
                 r -= 1
-            if r >= l:
+            else:
                 ans = ans + ((2**(r-l)) % mod)
-            l += 1
+                l += 1
         return ans % mod
         
