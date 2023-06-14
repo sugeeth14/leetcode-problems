@@ -19,7 +19,7 @@ class Solution:
         
         traverse(root)
         # print(nodes)
-        nodes.sort()
+        # nodes.sort()
         
         min_diff = nodes[1] - nodes[0]
         for i in range(2, len(nodes)):
