@@ -8,8 +8,8 @@ class Solution:
         
         heap = []
         # heapify(heap)
-        for i in range(1, n + 1):
-            heappush(heap, (inf, i))
+        # for i in range(1, n + 1):
+        #     heappush(heap, (inf, i))
         # print(heap)
         heappush(heap, (0, k)) # set the source vertex distance to 0
         res = {}
@@ -24,5 +24,5 @@ class Solution:
             for neighbor in neighbors[node]:
                 if neighbor not in res:
                     heappush(heap, (distance + neighbors[node][neighbor], neighbor))
-        return max(res.values()) if max(res.values()) != inf else -1     
+        return max(res.values()) if len(res) == n else -1     
         
