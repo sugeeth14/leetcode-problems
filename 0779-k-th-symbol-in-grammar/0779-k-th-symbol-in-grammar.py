@@ -12,7 +12,6 @@ class Solution:
             else:
                 current = (current + 1) % 2
                 k -= total_elements
-            # print(total_elements, k)
         return current
             
         
