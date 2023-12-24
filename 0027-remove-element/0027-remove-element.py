@@ -17,10 +17,5 @@ class Solution:
             else:
                 k += 1
         
-        count = 0
-        for i in range(len(nums)):
-            if nums[i] != val:
-                count += 1
-        
-        return count
+        return k
         
