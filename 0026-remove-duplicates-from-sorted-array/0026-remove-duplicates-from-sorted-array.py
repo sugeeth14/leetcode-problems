@@ -9,18 +9,21 @@ class Solution:
         5. Do this until current reaches the end of nums
         6. Once it reaches, return last.
         """
-        last = 0
-        current = 0
         
-        seen = set()
-        for current in range(len(nums)):
-            if nums[current] in seen:
+        """
+        One for the better space complexity
+        """
+        if len(nums) < 2:
+            return len(nums)
+        last = 1
+        for i in range(1, len(nums)):
+            if nums[i] == nums[i-1]:
                 continue
             else:
-                seen.add(nums[current])
-                nums[last] = nums[current]
+                nums[last] = nums[i]
                 last += 1
-                current += 1
         return last
+            
+        
         
         
