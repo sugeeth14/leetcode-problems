@@ -2,19 +2,24 @@ class Solution:
     def jump(self, nums: List[int]) -> int:
         
         
-        ans = [0] * len(nums)
+        visited = set()
         
-        for i in range(len(nums) - 2, -1, -1):
-            if nums[i] + i >= len(nums) - 1:
-                # can reach last index
-                ans[i] = 1
+        visited.add(0)
+        queue = collections.deque()
+        queue.append((0, 0))
+        
+        while queue:
+            top, steps = queue.popleft()
+            if top == len(nums) - 1:
+                return steps
             else:
-                #check the min in the possible children
-                min_value = inf
-                for j in range(i+1, min(nums[i] + i + 1, len(nums))):
-                    min_value = min(min_value, ans[j])
-                
-                ans[i] = 1 + min_value
-        # print(ans)
-        return ans[0]
+                for i in range(nums[top]):
+                    next_index = top + i + 1
+                    if next_index not in visited and next_index < len(nums):
+                        visited.add(next_index)
+                        queue.append((next_index, steps + 1))
+            # print(queue)
+        
+            
+        
         
