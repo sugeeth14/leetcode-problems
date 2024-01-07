@@ -1,39 +1,24 @@
 class Solution:
     def hIndex(self, citations: List[int]) -> int:
-        citations.sort()
         
-        def findpos(val):
-            l = 0
-            r = len(citations) - 1
-
-            while l <= r:
-                mid = (l + r)//2
-                if citations[mid] > val:
-                    r = mid - 1
-                elif citations[mid] == val:
-                    r = mid - 1
-                else:
-                    l = mid + 1
-
-            return l
         
-        l = 0
-        r = max(citations)
-        ans = 0
+        buckets = [0] * (len(citations) + 1)
+        n = len(citations)
         
-        while l <= r:
-            mid = (l + r) // 2
-            
-            position = findpos(mid)
-            # print(position)
-            
-            papers = len(citations) - position
-            
-            if papers > mid:
-                ans = mid
-                l = mid + 1
-            elif papers == mid:
-                return mid
+        # put in buckets based on the number of citations
+        
+        for c in citations:
+            if c < n:
+                buckets[c] += 1
             else:
-                r = mid - 1
-        return ans
+                buckets[n] += 1
+                
+        count = 0
+        
+        
+        for i in range(n, -1, -1):
+            count = count + buckets[i]
+            
+            if count >= i:
+                return i
+        return 0
