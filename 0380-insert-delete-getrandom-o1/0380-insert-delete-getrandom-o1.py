@@ -9,9 +9,10 @@ class RandomizedSet:
         res = val not in self.numsMap
         
         if res:
-            # we must insert the element
+            # we must insert
             self.numsMap[val] = len(self.nums)
             self.nums.append(val)
+        
         
         return res
         
@@ -19,19 +20,18 @@ class RandomizedSet:
     def remove(self, val: int) -> bool:
         res = val in self.numsMap
         if res:
-            # we must remove the element
+            # we must remove
+            
             index = self.numsMap[val]
-            lastVal = self.nums[len(self.nums) - 1]
+            lastValue = self.nums[-1]
             
-            
-            self.nums[index] = lastVal
+            self.nums[index] = lastValue
             self.nums.pop()
             
-            
-            self.numsMap[lastVal] = index
-            
+            self.numsMap[lastValue] = index
             del self.numsMap[val]
-            
+        
+        
         
         return res
         
