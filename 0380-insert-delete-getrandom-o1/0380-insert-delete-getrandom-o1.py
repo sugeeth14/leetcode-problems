@@ -7,21 +7,16 @@ class RandomizedSet:
 
     def insert(self, val: int) -> bool:
         res = val not in self.numsMap
-        
         if res:
             # we must insert
             self.numsMap[val] = len(self.nums)
             self.nums.append(val)
-        
-        
         return res
         
 
     def remove(self, val: int) -> bool:
         res = val in self.numsMap
         if res:
-            # we must remove
-            
             index = self.numsMap[val]
             lastValue = self.nums[-1]
             
@@ -30,9 +25,6 @@ class RandomizedSet:
             
             self.numsMap[lastValue] = index
             del self.numsMap[val]
-        
-        
-        
         return res
         
 
