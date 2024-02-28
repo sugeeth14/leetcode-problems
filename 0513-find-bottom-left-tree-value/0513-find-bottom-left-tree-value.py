@@ -6,27 +6,21 @@
 #         self.right = right
 class Solution:
     def findBottomLeftValue(self, root: Optional[TreeNode]) -> int:
-        
-        
-        
-        self.max_level = 0
+        queue = collections.deque()
         self.res = root.val
-        def backtrack(node, level):
-            if not node.left and not node.right:
-                # print(node.val, level)
-                # this can be potentially last level
-                if level > self.max_level:
-                    self.res = node.val
-                    self.max_level = level
-                return
-            else:
-                level += 1
-                if node.left:
-                    backtrack(node.left, level)
-                if node.right:
-                    backtrack(node.right, level)
-                return
+        self.best_level = 0
+        queue.append((root, 0))
         
-        backtrack(root, 0)
+        while queue:
+            top, level = queue.popleft()
+            if level > self.best_level:
+                self.best_level = level
+                self.res = top.val
+            # push the children
+            if top.left:
+                queue.append((top.left, level + 1))
+            if top.right:
+                queue.append((top.right, level + 1))
+        
         return self.res
-                
+        
