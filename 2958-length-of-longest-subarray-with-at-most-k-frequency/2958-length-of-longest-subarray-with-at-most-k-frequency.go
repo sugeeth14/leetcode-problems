@@ -5,11 +5,7 @@ func maxSubarrayLength(nums []int, k int) int {
     dic := map[int]int{}
     
     for i, num := range nums {
-        if _, ok := dic[num]; ok {
-            dic[num]++
-        } else {
-            dic[num] = 1
-        }
+        dic[num]++
         for dic[num] > k {
             dic[nums[l]]--
             l++
