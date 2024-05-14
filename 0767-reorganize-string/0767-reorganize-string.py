@@ -1,43 +1,48 @@
 class Solution:
     def reorganizeString(self, s: str) -> str:
-        queue = collections.deque()
+        '''
+        Algorithm:
+        1. Create a frequency dict of each character. 
+        2. Push the frequencies into a heap.
+        3. Every time, keep popping the max element, if the element is same as previous one, pop another element.
+        4. Reduce the value and push back to the heap.
+        5. If the top character is equal and you cannot pop anymore from the heap return empty string. 
         
-        h = []
-        heapq.heapify(h)
+        6. Return the res at the end.
+        '''
+        
+        heap = []
+        
+        heapq.heapify(heap)
         
         dic = collections.defaultdict(int)
         
         for char in s:
             dic[char] += 1
         
-        for key in dic:
-            heapq.heappush(h, [-dic[key],key])
-        # print(h)
+        for char in dic:
+            heappush(heap, (-dic[char], char))
+        
         res = ""
-        
-        count, top = heapq.heappop(h)
-        res += top
-        count += 1
-        # print(res)
-        # heapq.heappush(h, [top, count])
-        while h:
-            new_count, new_top = heapq.heappop(h)
-            if new_count == 0:
-                break
+        while heap:
+            value, char = heappop(heap)
+            if res == "":
+                res += char
+                if value + 1 != 0:
+                    heappush(heap, (value + 1, char))
             else:
-                res += new_top
-                new_count += 1
-                heapq.heappush(h, [count,top])
-                top = new_top
-                count = new_count
-        # print(res)
-        if count == 1 and res[-1] != top:
-            res += top
-        if len(res) == len(s):
-            return res
-        else:
-            return ""
-            
-        
-        
+                last_char = res[-1]
+                if char != last_char:
+                    res += char
+                    if value + 1 != 0:
+                        heappush(heap, (value + 1, char))
+                else:
+                    if len(heap) == 0:
+                        return ""
+                    second_value, second_char = heappop(heap)
+                    res += second_char
+                    heappush(heap, (value, char))
+                    if second_value + 1 != 0:
+                        heappush(heap, (second_value + 1, second_char))
+        return res
         
