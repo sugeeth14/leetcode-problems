@@ -2,34 +2,38 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         '''
         Algorithm:
-        1. Iterate over the rows and columns column by column and then row by row
-        2. For each item, if the value of grid is 1, add 1 to the res
-        3. If it is 1, then call the back track function
-        4. In the backtrack function write recursive function to make the neighbors continously 0
-        5. Return once there are no neighbors.
-        6. Return res at the end.
+        1. Maintain a set of visited.
+        2. Iterate over the rows and columns of the grid.
+        3. If the current index is 1 and it is not in visited, call backtrack function and add 1 to the res
+        4. Inside the backtrack function, if the current index is not in visited add to visited, only if the current index has 1 in it else return
+        5. Call backtrack with all its neighbors.
+        6. Return the res at the end after iterating all the indices in the grid
         '''
         
+        
+        res = 0
+        
+        visited = set()
         rows = len(grid)
         cols = len(grid[0])
         
-        def backtrack(i, j):
-            if i < 0 or i == rows or j < 0 or j == cols:
+        def backtrack(x, y):
+            if (x, y) in visited:
                 return
-            if grid[i][j] == "0":
+            if x < 0 or x == rows or y < 0 or y == cols:
                 return
-            else:
-                grid[i][j] = "0"
-                # visit all  the neighbors
-                backtrack(i + 1, j)
-                backtrack(i-1, j)
-                backtrack(i, j + 1)
-                backtrack(i, j - 1)
+            if grid[x][y] == "0":
+                return
+            visited.add((x, y))
+            backtrack(x + 1, y)
+            backtrack(x, y + 1)
+            backtrack(x - 1, y)
+            backtrack(x, y - 1)
         
-        res = 0
-        for i in range(rows):
-            for j in range(cols):
-                if grid[i][j] == "1":
+        for x in range(rows):
+            for y in range(cols):
+                if (x, y) not in visited and grid[x][y] == "1":
                     res += 1
-                    backtrack(i, j)
+                    backtrack(x, y)
         return res
+        
