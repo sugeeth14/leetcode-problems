@@ -12,7 +12,7 @@ class Solution:
             return (dic[item], -item)
         
         ans = []
-        for val in sorted(dic, key=custom_sort):
-            ans = ans + [val] * dic[val]
+        for val in sorted(nums, key=custom_sort):
+            ans.append(val)
         return ans
         
