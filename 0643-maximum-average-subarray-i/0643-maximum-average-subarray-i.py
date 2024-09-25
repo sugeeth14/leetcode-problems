@@ -10,11 +10,12 @@ class Solution:
         l = 0
         r = k
         while r < len(nums):
-            ans = max(ans, curr)
+            
             curr -= nums[l]
             curr += nums[r]
             l += 1
             r += 1
-        ans = max(ans, curr)
+            ans = max(ans, curr)
+        # ans = max(ans, curr)
         return ans / k
         
